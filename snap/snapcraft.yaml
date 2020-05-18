@@ -1,0 +1,181 @@
+name: valorant
+version: '1.0'
+summary: valorant is FPS 5x5 game developed and published by Riot Games.
+description: valorant is FPS 5x5 game developed and published by Riot Games.
+
+grade: stable
+confinement: devmode
+architectures:
+  - build-on: amd64
+    run-on: [amd64, i386]
+base: core18
+
+plugs:
+  wine-runtime:
+    interface: content
+    target: $SNAP/wine-runtime
+    default-provider: wine-platform-runtime
+  wine-5-staging:
+    interface: content
+    target: $SNAP/wine-platform
+    default-provider: wine-platform-5-staging
+  gtk-3-themes:
+    default-provider: gtk-common-themes
+    interface: content
+    target: $SNAP/data-dir/themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+
+apps:
+  valorant:
+    command: |
+      bin/sommelier "$WINEPREFIX/drive_c/Riot Games/VALORANT/live/VALORANT.exe"
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+      INSTALL_URL_NA: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_EUW: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_EUNE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_BR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_JP: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_KR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_LAN: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_LAS: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_OCE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_RU: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_TR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_PBE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      TRICKS: "d3dx9"
+      LC_ALL: "C.UTF-8"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - hardware-observe
+      - home
+      - joystick
+      - network
+      - network-bind
+      - opengl
+      - process-control
+      - audio-playback
+      - wayland
+      - x11
+      - gtk-3-themes
+      - icon-themes
+      - wine-runtime
+      - wine-5-staging
+  valorantnv:
+    command: bin/sommelier "$WINEPREFIX/drive_c/Riot Games/VALORANT/live/VALORANT.exe"
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+      __NV_PRIME_RENDER_OFFLOAD: "1"
+      __GLX_VENDOR_LIBRARY_NAME: "nvidia"
+      __VK_LAYER_NV_optimus: "NVIDIA_only"
+      INSTALL_URL_NA: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_EUW: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_EUNE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_BR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_JP: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_KR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_LAN: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_LAS: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_OCE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_RU: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_TR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      INSTALL_URL_PBE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
+      TRICKS: "d3dx9"
+      LC_ALL: "C.UTF-8"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - hardware-observe
+      - home
+      - joystick
+      - network
+      - network-bind
+      - opengl
+      - process-control
+      - audio-playback
+      - wayland
+      - x11
+      - gtk-3-themes
+      - icon-themes
+      - wine-runtime
+      - wine-5-staging
+  wineboot:
+    command: bin/sommelier $SNAP/wine-platform/wine-staging/bin/wineboot
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - audio-playback
+      - wayland
+      - x11
+  winecfg:
+    command: bin/sommelier $SNAP/wine-platform/wine-staging/bin/winecfg
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - audio-playback
+      - wayland
+      - x11
+  wineserver:
+    command: bin/sommelier $SNAP/wine-platform/wine-staging/bin/wineserver
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - audio-playback
+      - wayland
+      - x11
+  winetricks:
+    command: bin/sommelier $SNAP/wine-runtime/bin/winetricks
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+      LC_ALL: "C.UTF-8"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - network
+      - audio-playback
+      - wayland
+      - x11
+  regedit:
+    command: bin/sommelier $SNAP/wine-platform/wine-staging/bin/regedit
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - audio-playback
+      - wayland
+      - x11
+  blitzgg:
+    command: bin/sommelier "$(find $WINEPREFIX/ -type f -name 'Blitz.exe' | head -n1 2>/dev/null)"
+    environment:
+      WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+      LC_ALL: "C.UTF-8"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - network
+      - audio-playback
+      - wayland
+      - x11
+
+parts:
+  valorant:
+    plugin: dump
+    source: ./snap/local/scripts
+    override-build: |
+      snapcraftctl build
+      set -ex
+      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-runtime
+      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-platform
+    organize:
+      'sommelier': bin/

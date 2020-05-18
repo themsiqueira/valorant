@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Valorant
+Comment=
+Exec=valorant
+Icon=${SNAP}/meta/gui/valorant.png
+Categories=Game;
+Terminal=false
+StartupNotify=true
+StartupWMClass=VALORANT.exe
+Keywords=game
