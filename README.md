@@ -1,3 +1,5 @@
+# Important note: This is no longer functional
+
 <h1 align="center">
   <img src="snap/gui/valorant.png" alt="Project">
   <br />
