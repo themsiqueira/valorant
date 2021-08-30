@@ -1,7 +1,7 @@
 name: valorant
 version: '1.0'
-summary: valorant is FPS 5x5 game developed and published by Riot Games.
-description: valorant is FPS 5x5 game developed and published by Riot Games.
+summary: Valorant is FPS 5x5 game developed and published by Riot Games.
+description: Valorant is FPS 5x5 game developed and published by Riot Games.
 
 grade: stable
 confinement: devmode
@@ -84,7 +84,7 @@ apps:
       INSTALL_URL_RU: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
       INSTALL_URL_TR: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
       INSTALL_URL_PBE: "http://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.exe"
-      TRICKS: "d3dx9"
+      TRICKS: "d3dx9,dxvk191"
       LC_ALL: "C.UTF-8"
     plugs:
       - desktop
